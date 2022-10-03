@@ -2,3 +2,5 @@
 
 <%= @note.title %>
 <%= @note.content %>
+
+<%= button_to "Destroy this note", note_path(@note), method: :delete %>
