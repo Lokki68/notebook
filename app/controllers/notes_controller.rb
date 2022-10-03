@@ -14,6 +14,14 @@ class NotesController < ApplicationController
 
   def create
     @note = Note.new(note_params)
+
+    respond_to do |format|
+      if @note.save
+        format.html {redirect_to note_url(@note), notice: "Note was created successfully"}
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
+    end
   end
 
   private
