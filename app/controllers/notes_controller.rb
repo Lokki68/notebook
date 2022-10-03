@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  before_action :set_note, only: %i[show]
+  before_action :set_note, only: %i[show edit update]
 
   def index
     @notes = Note.all
@@ -17,9 +17,22 @@ class NotesController < ApplicationController
 
     respond_to do |format|
       if @note.save
-        format.html {redirect_to note_url(@note), notice: "Note was created successfully"}
+        format.html { redirect_to note_url(@note), notice: "Note was created successfully" }
       else
         format.html { render :new, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    respond_to do |format|
+      if @note.update(note_params)
+        format.html { redirect_to note_url(@note), notice: "Note was successfully updated" }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
       end
     end
   end
