@@ -1,4 +1,7 @@
 <div id="<%= dom_id note %>">
   <p><%= note.title %></p>
   <p><%= note.content %></p>
+
+  <%= link_to "Voir", note_path(note) %>
+  <hr>
 </div>
